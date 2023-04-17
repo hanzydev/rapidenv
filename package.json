@@ -1,0 +1,44 @@
+{
+    "name": "environments",
+    "version": "1.0.0",
+    "description": "A better way to manage your environment variables.",
+    "main": "src/index.js",
+    "module": "esm/index.mjs",
+    "types": "types/index.d.ts",
+    "exports": {
+        "import": "./esm/index.mjs",
+        "require": "./src/index.js",
+        "types": "./types/index.d.ts"
+    },
+    "private": false,
+    "repository": {
+        "url": "https://github.com/hanzydev/environments.git",
+        "type": "git"
+    },
+    "author": "hanzydev",
+    "license": "GPL-3.0",
+    "devDependencies": {
+        "prettier": "^2.7.1"
+    },
+    "scripts": {
+        "test": "node test/index.js"
+    },
+    "keywords": [
+        "environments",
+        "environment",
+        "dotenv",
+        "env",
+        ".env",
+        "config",
+        "variables",
+        "settings",
+        "envfile"
+    ],
+    "engines": {
+        "node": ">=16.6.0"
+    },
+    "bugs": {
+        "url": "https://github.com/hanzydev/hanzydev/issues"
+    },
+    "homepage": "https://github.com/hanzydev/environments#readme"
+}

@@ -1,0 +1,7 @@
+node_modules/
+test/
+.prettierrc.json
+.gitignore
+.npmignore
+*.lock
+*.log
