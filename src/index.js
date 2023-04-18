@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const { EOL } = require('node:os');
 
 const LINE_PATTERN =
-    /^\s*([\w\.\-]+)\s*=\s*(?:'([^']*)'|"([^"]*)"|`([^"]*)`|([^#\s]*))\s*(?:\s*#.*)?$/m;
+    /^\s*([\w\.\-]+)\s*=\s*(?:'([^']*)'|"([^"]*)"|([^#\s]*))\s*(?:\s*#.*)?$/m;
 
 class Environments {
     constructor(envPath = '.env') {
