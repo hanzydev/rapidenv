@@ -1,3 +1,3 @@
-import Environments from '../src/index.js';
+import RapidEnv from '../src/index.js';
 
-export default Environments;
+export default RapidEnv;

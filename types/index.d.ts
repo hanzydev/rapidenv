@@ -1,9 +1,18 @@
-export interface Environments {
+export interface RapidEnv {
     /**
      * The path to the .env file
      * @default '.env'
      */
     envPath: string;
+    /**
+     * Reads the environment variables from the .env file
+     * @returns {string[]} The environment variables
+     * @example
+     *
+     * const env = RapidEnv()
+     *
+     * console.log(env.readVariables()) // => ['PORT=3000']
+     */
     readVariables: () => string[];
     /**
      * Sets the environment variable
@@ -11,7 +20,7 @@ export interface Environments {
      * @param {string} value The value of the environment variable
      * @example
      *
-     * const env = Environments()
+     * const env = RapidEnv()
      *
      * env.setVariable('PORT', '3000')
      */
@@ -21,7 +30,7 @@ export interface Environments {
      * @param {string} key The key of the environment variable
      * @example
      *
-     * const env = Environments()
+     * const env = RapidEnv()
      *
      * env.deleteVariable('PORT')
      */
@@ -31,7 +40,7 @@ export interface Environments {
      * @returns {Object} The parsed environment variables
      * @example
      *
-     * const env = Environments()
+     * const env = RapidEnv()
      *
      * console.log(env.parseVariables()) // => { PORT: '3000' }
      */
@@ -41,18 +50,18 @@ export interface Environments {
      *
      * @example
      *
-     * const env = Environments()
+     * const env = RapidEnv()
      *
      * env.load()
      */
     load: () => void;
 }
 
-declare module 'environments' {
+declare module 'rapidenv' {
     /**
-     * Creates an instance of Environments
+     * Creates an instance of RapidEnv
      * @param {string} [envPath='.env'] The path to the .env file
-     * @returns {Environments} The Environments instance
+     * @returns {RapidEnv} The RapidEnv instance
      */
-    export default function Environments(envPath?: string): Environments;
+    export default function RapidEnv(envPath?: string): RapidEnv;
 }

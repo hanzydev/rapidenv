@@ -1,17 +1,17 @@
-# environments
+# rapidenv
 
-Environments is a zero-dependency library for managing environment variables in Node.js.
+RapidEnv is a zero-dependency library for managing environment variables in Node.js.
 
 ## Installation
 
 ```bash
-npm install environments
+npm install rapidenv
 ```
 
 ## Usage
 
 ```js
-const env = require('environments')();
+const env = require('rapidenv')();
 
 env.load(); // Loads the environment variables from the .env file
 env.setVariable('TEST', 'hello'); // Sets the TEST variable to hello
@@ -26,7 +26,7 @@ env.deleteVariable('TEST'); // Deletes the TEST variable
 TEST="hello" # This is also a comment
 ```
 
-## Multiple Values
+## Multiline Values
 
 ```dosini
 KEY="---- BEGIN MY KEY ----
@@ -40,7 +40,7 @@ hello
 
 ## Parsing
 ```js
-const env = require('environments')();
+const env = require('rapidenv')();
 
 console.log(env.parseVariables()) // { TEST: 'hello' }
 ```
@@ -48,7 +48,7 @@ console.log(env.parseVariables()) // { TEST: 'hello' }
 ## Custom .env Path
 
 ```js
-const env = require('environments')("./src/.env" /* Path to .env file */);
+const env = require('rapidenv')("./src/.env" /* Path to .env file */);
 
 env.load();
 ```

@@ -1,5 +1,5 @@
 {
-    "name": "environments",
+    "name": "rapidenv",
     "version": "1.0.0",
     "description": "A better way to manage your environment variables.",
     "main": "src/index.js",
@@ -12,7 +12,7 @@
     },
     "private": false,
     "repository": {
-        "url": "https://github.com/hanzydev/environments.git",
+        "url": "https://github.com/hanzydev/rapidenv.git",
         "type": "git"
     },
     "author": "hanzydev",
@@ -32,7 +32,8 @@
         "config",
         "variables",
         "settings",
-        "envfile"
+        "envfile",
+        "rapidenv"
     ],
     "engines": {
         "node": ">=16.6.0"
@@ -40,5 +41,5 @@
     "bugs": {
         "url": "https://github.com/hanzydev/hanzydev/issues"
     },
-    "homepage": "https://github.com/hanzydev/environments#readme"
+    "homepage": "https://github.com/hanzydev/rapidenv#readme"
 }

@@ -1,7 +1,7 @@
-const Environments = require('../src/index');
+const RapidEnv = require('../src/index');
 const { join } = require('node:path');
 
-const env = Environments(join(__dirname, '.env'));
+const env = RapidEnv(join(__dirname, '.env'));
 
 env.load();
 
