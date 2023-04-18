@@ -4,7 +4,7 @@ const { EOL } = require('node:os');
 const LINE_PATTERN =
     /^\s*([\w\.\-]+)\s*=\s*(?:'([^']*)'|"([^"]*)"|([^#\s]*))\s*(?:\s*#.*)?$/m;
 
-class Environments {
+class RapidEnv {
     constructor(envPath = '.env') {
         if (typeof envPath !== 'string') {
             throw new TypeError('Env path must be a string');
@@ -81,4 +81,4 @@ class Environments {
     }
 }
 
-module.exports = (...args) => new Environments(...args);
+module.exports = (...args) => new RapidEnv(...args);
