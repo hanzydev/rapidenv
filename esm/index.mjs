@@ -1,3 +1,3 @@
-import Environments from '../src';
+import Environments from '../src/index.js';
 
 export default Environments;
