@@ -21,7 +21,6 @@ class RapidEnv {
         return fs
             .readFileSync(this.envPath, 'utf8')
             .split(EOL)
-            .filter((v) => v !== '');
     }
 
     setVariable(key, value) {
@@ -52,7 +51,7 @@ class RapidEnv {
     }
 
     parseVariables() {
-        const envVars = this.readVariables();
+        const envVars = this.readVariables().filter((v) => v !== '');
         const vars = {};
 
         for (const line of envVars) {
