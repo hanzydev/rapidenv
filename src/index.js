@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const { EOL } = require('node:os');
 
-const LINE_PATTERN = /^(?:export\s+)?([a-zA-Z0-9_]+)\s*=\s*(?:'([^']*)'|"([^"]*)"|([^'"\s]+))\s*$/;
+const LINE_PATTERN =
+    /^\s*([\w\.\-]+)\s*=\s*(?:'([^']*)'|"([^"]*)"|`([^"]*)`|([^#\s]*))\s*(?:\s*#.*)?$/m;
 
 class Environments {
     constructor(envPath = '.env') {
@@ -17,7 +18,10 @@ class Environments {
     }
 
     readVariables() {
-        return fs.readFileSync(this.envPath, 'utf8').replace(/\r\n?/gm, '\n').split(EOL);
+        return fs
+            .readFileSync(this.envPath, 'utf8')
+            .split(EOL)
+            .filter((v) => v !== '');
     }
 
     setVariable(key, value) {
@@ -52,13 +56,15 @@ class Environments {
         const vars = {};
 
         for (const line of envVars) {
-            const match = LINE_PATTERN.exec(line);
+            const match = LINE_PATTERN.exec(line.replace(/\r\n?/gm, '\n'));
 
             if (match) {
                 const key = match[1];
-                let value = (match[3] || '').trim().replace(/^(['"`])([\s\S]*)\1$/gm, '$2');
+                let value = (match[3] || match[2] || '')
+                    .trim()
+                    .replace(/^(['"`])([\s\S]*)\1$/gm, '$2');
 
-                if (value[0] === '"') {
+                if (/^(['"`]).*\1$/gm.test(value)) {
                     value = value.replace(/\\n/g, '\n');
                     value = value.replace(/\\r/g, '\r');
                 }

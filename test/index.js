@@ -4,6 +4,7 @@ const { join } = require('node:path');
 const env = Environments(join(__dirname, '.env'));
 
 env.load();
+
 console.log(process.env.TEST); // => HELLO FROM ENV
 
 env.setVariable('TEST', 'test');
