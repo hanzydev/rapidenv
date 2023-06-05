@@ -30,7 +30,7 @@ class RapidEnv {
         if (targetLine !== undefined) {
             envVars.splice(envVars.indexOf(targetLine), 1, `${key}=${value}`);
         } else {
-            envVars.push(`${key}="${value}"`);
+            envVars.push(`${key}=${value}`);
         }
 
         process.env[key] = value;
