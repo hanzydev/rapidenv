@@ -17,14 +17,14 @@ export interface RapidEnv {
     /**
      * Sets the environment variable
      * @param {string} key The key of the environment variable
-     * @param {string} value The value of the environment variable
+     * @param {any} value The value of the environment variable
      * @example
      *
      * const env = RapidEnv()
      *
      * env.setVariable('PORT', '3000')
      */
-    setVariable: (key: string, value: string) => void;
+    setVariable: (key: string, value: any) => void;
     /**
      * Deletes the environment variable
      * @param {string} key The key of the environment variable
@@ -44,7 +44,7 @@ export interface RapidEnv {
      *
      * console.log(env.parseVariables()) // => { PORT: '3000' }
      */
-    parseVariables: () => { [key: string]: string };
+    parseVariables: () => { [key: string]: any };
     /**
      * Loads the environment variables from the .env file
      *

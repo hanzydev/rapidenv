@@ -18,7 +18,7 @@
     "author": "hanzydev",
     "license": "GPL-3.0",
     "devDependencies": {
-        "prettier": "^2.7.1"
+        "prettier": "^2.8.8"
     },
     "scripts": {
         "test": "node test/index.js"

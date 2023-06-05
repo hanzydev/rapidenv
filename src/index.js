@@ -28,7 +28,7 @@ class RapidEnv {
         const targetLine = envVars.find((line) => line.split('=')[0] === key);
 
         if (targetLine !== undefined) {
-            envVars.splice(envVars.indexOf(targetLine), 1, `${key}="${value}"`);
+            envVars.splice(envVars.indexOf(targetLine), 1, `${key}=${value}`);
         } else {
             envVars.push(`${key}="${value}"`);
         }
