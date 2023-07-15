@@ -4,3 +4,5 @@ const { join } = require('node:path');
 const env = RapidEnv(join(__dirname, '.env'));
 
 env.load();
+
+console.log(process.env.TEST)

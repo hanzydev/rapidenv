@@ -71,8 +71,6 @@ class RapidEnv {
             vars[key] = value;
         }
 
-        console.log(vars);
-
         return vars;
     }
 

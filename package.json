@@ -1,6 +1,6 @@
 {
     "name": "rapidenv",
-    "version": "1.1.4",
+    "version": "1.1.6",
     "description": "A better way to manage your environment variables.",
     "main": "src/index.js",
     "module": "esm/index.mjs",
