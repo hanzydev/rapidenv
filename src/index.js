@@ -18,7 +18,11 @@ class RapidEnv {
     }
 
     readVariables() {
-        return fs.readFileSync(this.envPath, 'utf8').split(EOL);
+        return fs
+            .readFileSync(this.envPath, 'utf8')
+            .split(EOL)
+            .filter((v) => v !== '')
+            .join('\n');
     }
 
     setVariable(key, value) {
@@ -49,24 +53,27 @@ class RapidEnv {
     }
 
     parseVariables() {
-        const envVars = this.readVariables().filter((v) => v !== '');
+        const envVars = this.readVariables();
         const vars = {};
 
-        for (const line of envVars) {
-            const match = LINE_PATTERN.exec(line.replace(/\r\n?/gm, '\n'));
+        let match;
+        while ((match = LINE_PATTERN.exec(envVars))) {
+            const key = match[1];
+            let value = (match[2] || '').trim();
 
-            if (match) {
-                const key = match[1];
-                let value = (match[2] || '').trim().replace(/^(['"`])([\s\S]*)\1$/gm, '$2');
+            const maybeQuote = value[0];
 
-                if (value[0] === '"') {
-                    value = value.replace(/\\n/g, '\n');
-                    value = value.replace(/\\r/g, '\r');
-                }
+            value = value.replace(/^(['"`])([\s\S]*)\1$/gm, '$2');
 
-                vars[key] = value;
+            if (maybeQuote === '"') {
+                value = value.replace(/\\n/g, '\n');
+                value = value.replace(/\\r/g, '\r');
             }
+
+            vars[key] = value;
         }
+
+        console.log(vars);
 
         return vars;
     }
