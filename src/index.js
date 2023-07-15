@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const { EOL } = require('node:os');
 
 const LINE_PATTERN =
-    /^\s*([\w\.\-]+)\s*=\s*(?:'([^']*)'|"([^"]*)"|([^#\s]*))\s*(?:\s*#.*)?$/m;
+    /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'])*'|\s*"(?:\\"|[^"])*"|\s*`(?:\\`|[^`])*`|[^#\r\n]+)?\s*(?:#.*)?(?:$|$)/gm;
 
 class RapidEnv {
     constructor(envPath = '.env') {
@@ -18,9 +18,7 @@ class RapidEnv {
     }
 
     readVariables() {
-        return fs
-            .readFileSync(this.envPath, 'utf8')
-            .split(EOL)
+        return fs.readFileSync(this.envPath, 'utf8').split(EOL);
     }
 
     setVariable(key, value) {
@@ -59,11 +57,9 @@ class RapidEnv {
 
             if (match) {
                 const key = match[1];
-                let value = (match[3] || match[2] || '')
-                    .trim()
-                    .replace(/^(['"`])([\s\S]*)\1$/gm, '$2');
+                let value = (match[2] || '').trim().replace(/^(['"`])([\s\S]*)\1$/gm, '$2');
 
-                if (/^(['"`]).*\1$/gm.test(value)) {
+                if (value[0] === '"') {
                     value = value.replace(/\\n/g, '\n');
                     value = value.replace(/\\r/g, '\r');
                 }
